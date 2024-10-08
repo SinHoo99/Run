@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ShootPositions : MonoBehaviour
 {
-    private ObjectPool objectPool;
     public float spawnInterval = 1f;
+    [SerializeField] private PoolObject _bullet;
+    [SerializeField] private ObjectPool _objectPool;
+    
 
     private void Awake()
     {
-        
+        AddObjectPool();
     }
     private void Start()
     {
@@ -23,7 +25,7 @@ public class ShootPositions : MonoBehaviour
             float randomYPosition = Random.Range(-6, 6);
             Vector3 spawnPosition = new Vector3(transform.position.x, randomYPosition, 0);
 
-            PoolObject bullet = objectPool.SpawnFromPool("Bullet");
+            PoolObject bullet = _objectPool.SpawnFromPool("Bullet");
 
             if (bullet != null)
             {
@@ -37,13 +39,6 @@ public class ShootPositions : MonoBehaviour
 
     public void AddObjectPool()
     {
-        objectPool.AddObjectPool()
-    }
-
-    private void CreatBullet(string tag, Vector2 position, Vector2 direction)
-    {
-        PoolObject bullet = objectPool?.SpawnFromPool(tag);
-
-        bullet.ReturnMyComponent<Bullet>().Initialize(position, direction);
+        _objectPool.AddObjectPool("Bullet", _bullet, 20); //::TODO 나중에 바꿀거임 예시
     }
 }

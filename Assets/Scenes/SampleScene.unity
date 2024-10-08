@@ -217,6 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 172856092}
   - component: {fileID: 172856093}
+  - component: {fileID: 172856094}
   m_Layer: 0
   m_Name: ShootPositions
   m_TagString: Untagged
@@ -251,8 +252,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a8ed7e62c19b44aba6ee9786ef691d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPool: {fileID: 0}
   spawnInterval: 1
+  _bullet: {fileID: 4804280908019694386, guid: b914692ad56c55c429e213863189feb7, type: 3}
+  _objectPool: {fileID: 172856094}
+--- !u!114 &172856094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172856091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: addcc3e6a88cabd43bfe08e40a1c2bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &619394801
 MonoBehaviour:
   m_ObjectHideFlags: 0
