@@ -34,7 +34,7 @@ public class Bullet : PoolObject
         gameObject.SetActive(false);
     }
 
-      public void Initialize(Vector2 position, Vector2 direction)
+    public void Initialize(Vector2 position, Vector2 direction)
     {
         transform.position = position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
