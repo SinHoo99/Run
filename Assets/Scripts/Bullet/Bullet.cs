@@ -14,7 +14,7 @@ public class Bullet : PoolObject
 
     private void OnEnable()
     {
-        _rb.velocity = Vector2.left * speed;
+        _rb.velocity = Vector2.down * speed;
         StartCoroutine(DisableAfterTime());
     }
 
@@ -38,7 +38,7 @@ public class Bullet : PoolObject
     {
         transform.position = position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
 
     }
 }

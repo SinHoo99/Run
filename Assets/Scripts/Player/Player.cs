@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float jumpForce = 10f;
+    public float moveSpeed = 5f;
     private Rigidbody2D rb;
 
     void Start()
@@ -12,8 +12,13 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void Jump()
+    public void MoveLeft()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+    }
+
+    public void MoveRight()
+    {
+        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 }

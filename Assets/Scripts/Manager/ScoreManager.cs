@@ -21,7 +21,6 @@ public class ScoreManager : MonoBehaviour
     private void IncreaseScore()
     {
         _score++;
-        Debug.Log("Score increased: " + _score);
         UpdateScoreUI();
     }
 

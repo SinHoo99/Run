@@ -18,9 +18,9 @@ public class ShootPositions : MonoBehaviour
     {
         while (true)
         {
-            float randomYPosition = Random.Range(-6, 6);
-            Vector3 spawnPosition = new Vector3(transform.position.x, randomYPosition, 0);
-            Vector2 direction = Vector2.left;
+            int randomXPosition = Random.Range(-6, 6);
+            Vector3 spawnPosition = new Vector3(randomXPosition, transform.position.y, 0);
+            Vector2 direction = Vector2.down;
 
             CreatBullet("Bullet", spawnPosition, direction);
 
