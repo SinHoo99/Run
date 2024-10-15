@@ -5,6 +5,9 @@ using UnityEngine;
 public class ShootPositions : MonoBehaviour
 {
     public float spawnInterval = 1f;
+    private float intervalDecreaseRate = 0.1f;
+    private float minSpawnInterval = 0.5f;
+    private float timeToDecrease = 5f;
     [SerializeField] private PoolObject _bullet;
     [SerializeField] private ObjectPool _objectPool;
     
@@ -12,13 +15,14 @@ public class ShootPositions : MonoBehaviour
     {
         AddObjectPool();
         StartCoroutine(SpawnBullets());
+        StartCoroutine(DecreaseSpawnInterval());
     }
 
     IEnumerator SpawnBullets()
     {
         while (true)
         {
-            int randomXPosition = Random.Range(-6, 6);
+            float randomXPosition = Random.Range(-2, 2);
             Vector3 spawnPosition = new Vector3(randomXPosition, transform.position.y, 0);
             Vector2 direction = Vector2.down;
 
@@ -28,9 +32,17 @@ public class ShootPositions : MonoBehaviour
         }
     }
 
+    IEnumerator DecreaseSpawnInterval()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(timeToDecrease);
+            spawnInterval = Mathf.Max(spawnInterval - intervalDecreaseRate, minSpawnInterval);
+        }
+    }
     public void AddObjectPool()
     {
-        _objectPool.AddObjectPool("Bullet", _bullet, 20); //::TODO 나중에 바꿀거임 예시
+        _objectPool.AddObjectPool("Bullet", _bullet, 100); //::TODO 나중에 바꿀거임 예시
     }
 
     private void CreatBullet(string tag, Vector2 position, Vector2 direction)
