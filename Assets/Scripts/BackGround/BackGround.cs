@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackGround : MonoBehaviour
 {
-    private GameManager GM => GameManager.Instance;
+    [SerializeField]private PlayerController _controller;
 
     private bool moveLeft = true;
 
@@ -12,11 +12,11 @@ public class BackGround : MonoBehaviour
     {
         if (moveLeft)
         {
-            GM.Player.MoveLeft();
+            _controller.MoveLeft();
         }
         else
         {
-            GM.Player.MoveRight();
+            _controller.MoveRight();
         }
 
         moveLeft = !moveLeft;

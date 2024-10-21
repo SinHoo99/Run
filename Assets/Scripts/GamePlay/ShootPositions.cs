@@ -42,7 +42,7 @@ public class ShootPositions : MonoBehaviour
     }
     public void AddObjectPool()
     {
-        _objectPool.AddObjectPool("Bullet", _bullet, 100); //::TODO 나중에 바꿀거임 예시
+        _objectPool.AddObjectPool("Bullet", _bullet, 20); //::TODO 나중에 바꿀거임 예시
     }
 
     private void CreatBullet(string tag, Vector2 position, Vector2 direction)

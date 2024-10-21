@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.text = "Score: "+ _score.ToString();
+            scoreText.text = _score.ToString();
         }
     }
 }

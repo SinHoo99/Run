@@ -6,6 +6,7 @@ public class Bullet : PoolObject
     public float speed = 5f;
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
+    private BoxCollider2D _boxCollider;
     [SerializeField] private Sprite[] sprites;
     private float _lifeTime = 5f;
 
@@ -13,12 +14,14 @@ public class Bullet : PoolObject
     {
         _rb = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void OnEnable()
     {
         _rb.velocity = Vector2.down * speed;
         SetRandomSprite();
+        UpdateColliderSize();
         StartCoroutine(DisableAfterTime());
     }
 
@@ -30,6 +33,15 @@ public class Bullet : PoolObject
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameObject.SetActive(false);
+    }
+
+    private void UpdateColliderSize()
+    {
+        if (_spriteRenderer != null && _boxCollider != null && _spriteRenderer.sprite != null)
+        {
+            _boxCollider.size = _spriteRenderer.bounds.size;
+            _boxCollider.offset = _spriteRenderer.bounds.center;
+        }
     }
 
     private IEnumerator DisableAfterTime()

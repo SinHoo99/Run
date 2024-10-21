@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float jumpForce = 10f;
     private Rigidbody2D rb;
+    public float moveSpeed = 5f;
+
+    private Vector2 _startPosition = new Vector2(0f, -2f);
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        transform.position = _startPosition;    
     }
 
-    public void Jump()
+    public void MoveLeft()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+    }
+
+    public void MoveRight()
+    {
+        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
     }
 }
+
