@@ -9,15 +9,28 @@ public class SpriteChanger : MonoBehaviour
 
     public void ChangeSprite()
     {
-        Image[] _chlidImage = GetComponentsInChildren<Image>();
+        // 자식 Image 컴포넌트를 가져와서 스프라이트를 변경할 대상을 설정
+        Image[] _childImages = GetComponentsInChildren<Image>();
+        Image targetImage = _childImages.Length > 1 ? _childImages[1] : null;
 
-        Image targetImage = _chlidImage.Length > 1 ? _chlidImage[1] : null;
-
+        // GameManager에서 Player의 SpriteRenderer 가져오기
         SpriteRenderer playerSpriteRenderer = GM.Player.GetComponentInChildren<SpriteRenderer>();
 
-        if (_chlidImage != null && playerSpriteRenderer != null)
+        if (targetImage != null && playerSpriteRenderer != null)
         {
-            playerSpriteRenderer.sprite = targetImage.sprite;       
+            // 스프라이트 변경
+            playerSpriteRenderer.sprite = targetImage.sprite;
+
+            // GameData 업데이트 및 저장
+            GM.gameData.playerSpriteName = targetImage.sprite.name;
+            GM.gameData.playerSpritePath = "Sprites/Bike"; // 실제 아틀라스 경로 입력
+            GM.saveManager.SaveGameData(GM.gameData);
+
+            Debug.Log("Player 스프라이트가 변경되었습니다: " + targetImage.sprite.name);
+        }
+        else
+        {
+            Debug.LogWarning("스프라이트를 변경할 수 없습니다. 타겟 이미지 또는 플레이어 스프라이트 렌더러가 없습니다.");
         }
     }
 }
